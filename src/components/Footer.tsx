@@ -9,9 +9,8 @@ export default function Footer() {
         
         <div>
           <h4 className="font-semibold mb-5 text-neutral-300">Контакты</h4>
-          <a href="tel:+79991234567" className="block text-neutral-500 mb-3 hover:text-neutral-300 transition-colors">+7 (999) 123-45-67</a>
+          <p className="block text-neutral-500 mb-3 hover:text-neutral-300 transition-colors">+7 (999) 123-45-67</p>
           <a href="mailto:email@example.com" className="block text-neutral-500 mb-3 hover:text-neutral-300 transition-colors">email@example.com</a>
-          <p className="text-neutral-500">г. Москва, ул. Примерная, 1</p>
         </div>
 
         <div>
@@ -21,11 +20,11 @@ export default function Footer() {
           <a href="https://youla.ru" target="_blank" rel="noopener noreferrer" className="block text-neutral-500 hover:text-neutral-300 transition-colors">Юла</a>
         </div>
         
-        <div>
+        {/* <div>
           <h4 className="font-semibold mb-5 text-neutral-300">Соцсети</h4>
           <a href="https://t.me/username" target="_blank" rel="noopener noreferrer" className="block text-neutral-500 mb-3 hover:text-neutral-300 transition-colors">Telegram</a>
           <a href="https://vk.com/id0" target="_blank" rel="noopener noreferrer" className="block text-neutral-500 mb-3 hover:text-neutral-300 transition-colors">VK</a>
-        </div>
+        </div> */}
       </div>
     </footer>
   )

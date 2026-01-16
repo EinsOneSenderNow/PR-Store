@@ -25,28 +25,42 @@ export default function Hero() {
         
         <motion.div
           className="absolute w-56 h-56 rounded-3xl bg-gradient-to-br from-blue-500/30 to-transparent blur-xl"
-          style={{ top: '60%', left: '12%' }}
+          style={{ top: '65%', left: '7%' }}
+          animate={{ y: [0, -40, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        <motion.div
+          className="absolute w-56 h-56 rounded-3xl bg-gradient-to-br from-green-500/30 to-transparent blur-xl"
+          style={{ top: '20%', left: '40%' }}
           animate={{ y: [0, -40, 0], rotate: [0, 15, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
         
         <motion.div
           className="absolute w-[28rem] h-[28rem] rounded-full bg-gradient-to-br from-cyan-500/25 to-transparent blur-2xl"
-          style={{ top: '15%', right: '5%' }}
+          style={{ top: '10%', right: '5%' }}
           animate={{ y: [0, 60, 0], x: [0, -40, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         />
         
         <motion.div
           className="absolute w-36 h-36 rounded-full bg-gradient-to-br from-pink-500/35 to-transparent blur-xl"
-          style={{ top: '70%', right: '18%' }}
+          style={{ top: '70%', right: '10%' }}
           animate={{ y: [0, -50, 0], x: [0, 25, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         <motion.div
           className="absolute w-44 h-44 rounded-full bg-gradient-to-br from-violet-500/30 to-transparent blur-xl"
-          style={{ top: '40%', left: '45%' }}
+          style={{ top: '60%', right: '35%' }}
+          animate={{ y: [0, 35, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        <motion.div
+          className="absolute w-44 h-44 rounded-3xl bg-gradient-to-br from-orange-500/30 to-transparent blur-xl"
+          style={{ top: '55%', left: '35%' }}
           animate={{ y: [0, 35, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         />
