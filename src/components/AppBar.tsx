@@ -1,6 +1,6 @@
 export default function AppBar() {
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-neutral-950/70 backdrop-blur-xl z-50 rounded-b-2xl border-b border-neutral-800/50">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-neutral-950/70 backdrop-blur-xl z-50 border-b border-neutral-800/50">
       <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-between">
         <div className="text-xl font-semibold tracking-tight">PRStore</div>
         <button className="w-10 h-10 rounded-full bg-neutral-800/80 flex items-center justify-center hover:bg-neutral-700 transition-all duration-300 hover:scale-105">
