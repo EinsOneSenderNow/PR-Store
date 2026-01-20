@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
+import { motion, useTransform, MotionValue } from 'framer-motion'
 
 export default function HeroBackground({ scrollY }: { scrollY: MotionValue<number> }) {
   const y1 = useTransform(scrollY, [0, 1000], [0, 500])
