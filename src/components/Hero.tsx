@@ -30,12 +30,14 @@ export default function Hero() {
         />
         
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 tracking-tight">{COMPANY_INFO.name}</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 tracking-tight bg-gradient-to-r from-blue-400 via-red-400 to-green-400 bg-clip-text text-transparent pb-2">
+          {COMPANY_INFO.name}
+        </h1>
           <p className="text-base sm:text-lg md:text-xl text-neutral-400 mb-8 sm:mb-12 max-w-md mx-auto px-4">{COMPANY_INFO.subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center px-4">
             <a 
               href="#how-to-order" 
-              className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-black rounded-full font-medium hover:scale-105 hover:shadow-lg hover:shadow-white/20 transition-all duration-300"
+              className="px-8 sm:px-10 py-3 sm:py-4 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
             >
               Заказать
             </a>

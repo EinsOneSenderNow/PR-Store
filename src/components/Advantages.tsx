@@ -2,6 +2,15 @@ import { motion } from 'framer-motion'
 import { ADVANTAGES, WORK_EXAMPLES } from '../data/content'
 
 export default function Advantages() {
+  const getHoverColor = (index: number) => {
+    const colors = [
+      'hover:bg-blue-900/30 hover:border-blue-700/50',
+      'hover:bg-red-900/30 hover:border-red-700/50',
+      'hover:bg-green-900/30 hover:border-green-700/50'
+    ]
+    return colors[index % colors.length]
+  }
+
   return (
     <section className="min-h-screen px-4 sm:px-8 py-16 sm:py-32">
       <div className="max-w-6xl mx-auto">
@@ -19,7 +28,7 @@ export default function Advantages() {
           {ADVANTAGES.map((item, i) => (
             <motion.div 
               key={i}
-              className="bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 hover:bg-red-900/30 hover:border-red-700/50 transition-colors duration-300"
+              className={`bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 transition-colors duration-300 ${getHoverColor(i)}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
@@ -45,7 +54,7 @@ export default function Advantages() {
           {WORK_EXAMPLES.map((item, i) => (
             <motion.div 
               key={item.id}
-              className="card-hover aspect-square bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-600 hover:border-green-700/50 hover:bg-green-900/30 cursor-pointer"
+              className={`card-hover aspect-square bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-600 cursor-pointer ${getHoverColor(i)}`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: i * 0.15 }}

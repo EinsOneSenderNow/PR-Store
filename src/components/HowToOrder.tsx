@@ -2,6 +2,15 @@ import { motion } from 'framer-motion'
 import { ORDER_STEPS } from '../data/content'
 
 export default function HowToOrder() {
+  const getStepGradient = (index: number) => {
+    const gradients = [
+      'from-blue-600 to-blue-800',
+      'from-red-600 to-red-800',
+      'from-green-600 to-green-800'
+    ]
+    return gradients[index % gradients.length]
+  }
+
   return (
     <section id="how-to-order" className="min-h-screen px-4 sm:px-8 py-16 sm:py-32 bg-slate-900/50">
       <div className="max-w-6xl mx-auto">
@@ -25,7 +34,7 @@ export default function HowToOrder() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-8">
+              <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${getStepGradient(i)} text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-8 shadow-lg`}>
                 {step.num}
               </div>
               <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{step.title}</h3>
