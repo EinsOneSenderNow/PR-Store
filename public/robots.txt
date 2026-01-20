@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Замените https://your-domain.com на ваш реальный домен
+Sitemap: https://pr-layer.ru/sitemap.xml
