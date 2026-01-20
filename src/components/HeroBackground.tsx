@@ -1,5 +1,6 @@
 import { motion, useTransform, MotionValue, useSpring, useMotionValue } from 'framer-motion'
-import { useEffect, useRef, CSSProperties } from 'react'
+import { useEffect, useRef } from 'react'
+import type { CSSProperties } from 'react'
 
 function InteractiveShape({
   className,
