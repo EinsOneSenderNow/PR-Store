@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion'
+import { ADVANTAGES, WORK_EXAMPLES } from '../data/content'
 
 export default function Advantages() {
-  const advantages = [
-    { title: 'Преимущество 1', desc: 'Описание первого преимущества вашей компании' },
-    { title: 'Преимущество 2', desc: 'Описание второго преимущества вашей компании' },
-    { title: 'Преимущество 3', desc: 'Описание третьего преимущества вашей компании' },
-  ]
-
   return (
     <section className="min-h-screen px-4 sm:px-8 py-16 sm:py-32">
       <div className="max-w-6xl mx-auto">
@@ -21,17 +16,17 @@ export default function Advantages() {
         </motion.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-32">
-          {advantages.map((item, i) => (
+          {ADVANTAGES.map((item, i) => (
             <motion.div 
               key={i}
-              className="bg-neutral-900/50 border border-neutral-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 hover:bg-neutral-900 hover:border-neutral-700 transition-colors duration-300"
+              className="bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 hover:bg-red-900/30 hover:border-red-700/50 transition-colors duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true, margin: "-100px" }}
             >
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">{item.title}</h3>
-              <p className="text-neutral-400 leading-relaxed text-sm sm:text-base">{item.desc}</p>
+              <p className="text-slate-400 leading-relaxed text-sm sm:text-base">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -47,16 +42,16 @@ export default function Advantages() {
         </motion.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {[1, 2, 3].map((i) => (
+          {WORK_EXAMPLES.map((item, i) => (
             <motion.div 
-              key={i}
-              className="card-hover aspect-square bg-neutral-900/50 border border-neutral-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-neutral-600 hover:border-neutral-700 hover:bg-neutral-900 cursor-pointer"
+              key={item.id}
+              className="card-hover aspect-square bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-600 hover:border-green-700/50 hover:bg-green-900/30 cursor-pointer"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              Фото {i}
+              {item.label}
             </motion.div>
           ))}
         </div>
