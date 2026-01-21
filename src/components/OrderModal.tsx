@@ -1,10 +1,16 @@
 import { m, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 interface OrderModalProps {
   isOpen: boolean
   onClose: () => void
 }
+
+const serviceOptions = [
+  { value: '3d-print', label: '3D-печать' },
+  { value: 'modeling', label: '3D-моделирование' },
+  { value: 'consultation', label: 'Консультация' },
+]
 
 export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   const [formData, setFormData] = useState({
@@ -13,10 +19,27 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
     type: '3d-print',
     comment: ''
   })
+  const [isSelectOpen, setIsSelectOpen] = useState(false)
+  const selectRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
+        setIsSelectOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) setIsSelectOpen(false)
+  }, [isOpen])
+
+  const selectedOption = serviceOptions.find(opt => opt.value === formData.type)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send data to backend or Telegram
     console.log('Form submitted:', formData)
     alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
     onClose()
@@ -76,17 +99,62 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                   />
                 </div>
 
+                {/* Кастомный Select */}
                 <div>
                   <label className="block text-sm text-slate-400 mb-1">Тип услуги</label>
-                  <select
-                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer"
-                    value={formData.type}
-                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                  >
-                    <option value="3d-print">3D-печать</option>
-                    <option value="modeling">3D-моделирование</option>
-                    <option value="consultation">Консультация</option>
-                  </select>
+                  <div ref={selectRef} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setIsSelectOpen(!isSelectOpen)}
+                      className={`w-full bg-slate-800/50 border rounded-xl px-4 py-3 text-white text-left flex items-center justify-between transition-all cursor-pointer ${
+                        isSelectOpen 
+                          ? 'border-blue-500 ring-1 ring-blue-500' 
+                          : 'border-slate-700 hover:border-slate-600'
+                      }`}
+                    >
+                      <span>{selectedOption?.label}</span>
+                      <m.svg 
+                        animate={{ rotate: isSelectOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="w-5 h-5 text-slate-400" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </m.svg>
+                    </button>
+
+                    <AnimatePresence>
+                      {isSelectOpen && (
+                        <m.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl z-10"
+                        >
+                          {serviceOptions.map((option) => (
+                            <button
+                              key={option.value}
+                              type="button"
+                              onClick={() => {
+                                setFormData({ ...formData, type: option.value })
+                                setIsSelectOpen(false)
+                              }}
+                              className={`w-full px-4 py-3 text-left transition-all cursor-pointer ${
+                                formData.type === option.value
+                                  ? 'bg-blue-600/20 text-blue-400'
+                                  : 'text-white hover:bg-slate-700/50'
+                              }`}
+                            >
+                              {option.label}
+                            </button>
+                          ))}
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
 
                 <div>
