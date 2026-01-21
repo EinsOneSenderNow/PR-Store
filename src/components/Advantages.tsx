@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ADVANTAGES, WORK_EXAMPLES } from '../data/content'
 
 export default function Advantages() {
@@ -14,7 +14,7 @@ export default function Advantages() {
   return (
     <section className="min-h-screen px-4 sm:px-8 py-16 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <m.h2 
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-20 text-center tracking-tight"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,11 +22,11 @@ export default function Advantages() {
           viewport={{ once: true, margin: "-100px" }}
         >
           Преимущества
-        </motion.h2>
+        </m.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-32">
           {ADVANTAGES.map((item, i) => (
-            <motion.div 
+            <m.div 
               key={i}
               className={`bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 transition-colors duration-300 ${getHoverColor(i)}`}
               initial={{ opacity: 0, y: 30 }}
@@ -36,11 +36,11 @@ export default function Advantages() {
             >
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">{item.title}</h3>
               <p className="text-slate-400 leading-relaxed text-sm sm:text-base">{item.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
-        <motion.h2 
+        <m.h2 
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-20 text-center tracking-tight"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,11 +48,11 @@ export default function Advantages() {
           viewport={{ once: true, margin: "-100px" }}
         >
           Примеры работ
-        </motion.h2>
+        </m.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {WORK_EXAMPLES.map((item, i) => (
-            <motion.div 
+            <m.div 
               key={item.id}
               className={`card-hover aspect-square bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-600 cursor-pointer ${getHoverColor(i)}`}
               initial={{ opacity: 0 }}
@@ -61,7 +61,7 @@ export default function Advantages() {
               viewport={{ once: true, margin: "-100px" }}
             >
               {item.label}
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

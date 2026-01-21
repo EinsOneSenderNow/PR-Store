@@ -1,4 +1,4 @@
-import { motion, useTransform, MotionValue, useSpring, useMotionValue } from 'framer-motion'
+import { m, useTransform, MotionValue, useSpring, useMotionValue } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 
@@ -65,17 +65,17 @@ function InteractiveShape({
   }, [mouseX, mouseY, parentY, x, y])
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className="absolute"
       style={{ ...style, x, y }}
     >
-      <motion.div
+      <m.div
         className={className}
         animate={animate}
         transition={transition}
       />
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -95,7 +95,7 @@ export default function HeroBackground({ scrollY }: { scrollY: MotionValue<numbe
   }, [mouseX, mouseY])
 
   return (
-    <motion.div 
+    <m.div 
         className="absolute inset-0 pointer-events-none"
         style={{ y: y1 }}
       >
@@ -188,6 +188,6 @@ export default function HeroBackground({ scrollY }: { scrollY: MotionValue<numbe
           animate={{ y: [0, -30, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
-      </motion.div>
+      </m.div>
   )
 }

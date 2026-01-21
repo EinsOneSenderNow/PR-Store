@@ -1,21 +1,24 @@
-import { motion, useScroll } from 'framer-motion'
+import { m, useScroll } from 'framer-motion'
+import { useState } from 'react'
 import HeroBackground from './HeroBackground'
+import OrderModal from './OrderModal'
 import { COMPANY_INFO } from '../data/content'
 
 export default function Hero() {
   const { scrollY } = useScroll()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <section className="h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
       <HeroBackground scrollY={scrollY} />
 
-      <motion.div 
+      <m.div 
         className="relative z-10 flex flex-col items-center w-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <motion.img 
+        <m.img 
           src={COMPANY_INFO.logo}
           alt={`${COMPANY_INFO.name} Logo`}
           className="w-24 h-24 sm:w-75 sm:h-75 mb-6 sm:mb-8 rounded-2xl"
@@ -35,12 +38,12 @@ export default function Hero() {
         </h1>
           <p className="text-base sm:text-lg md:text-xl text-neutral-400 mb-8 sm:mb-12 max-w-md mx-auto px-4">{COMPANY_INFO.subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center px-4">
-            <a 
-              href="#how-to-order" 
-              className="px-8 sm:px-10 py-3 sm:py-4 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="px-8 sm:px-10 py-3 sm:py-4 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-500 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer"
             >
               Заказать
-            </a>
+            </button>
             <button 
               disabled 
               className="px-8 sm:px-10 py-3 sm:py-4 border border-neutral-700 text-neutral-500 rounded-full font-medium cursor-not-allowed opacity-50"
@@ -49,7 +52,9 @@ export default function Hero() {
             </button>
           </div>
         </div>
-      </motion.div>
+      </m.div>
+
+      <OrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   )
 }

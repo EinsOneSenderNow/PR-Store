@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { COMPANY_INFO } from '../data/content'
 
 export default function AppBar() {
@@ -17,10 +17,11 @@ export default function AppBar() {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-xl z-50 rounded-b-2xl">
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-blue-600 via-red-500 to-green-500 opacity-50" />
-      <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 flex items-center justify-between relative">
-        <a href="/" className="flex items-center gap-3 group">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 px-2 sm:px-4">
+      <div className="w-full max-w-5xl h-16 bg-slate-950/80 backdrop-blur-xl rounded-2xl relative shadow-lg shadow-black/20 border border-slate-800/50">
+        <div className="absolute bottom-0 left-4 right-4 h-[1px] bg-gradient-to-r from-blue-600 via-red-500 to-green-500 opacity-50" />
+        <div className="h-full px-4 sm:px-6 flex items-center justify-between relative">
+          <a href="/" className="flex items-center gap-3 group">
           <img 
             src={COMPANY_INFO.icon}
             alt={`${COMPANY_INFO.name} Logo`}
@@ -43,7 +44,7 @@ export default function AppBar() {
 
           <AnimatePresence>
             {isDropdownOpen && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -59,9 +60,10 @@ export default function AppBar() {
                     {item}
                   </button>
                 ))}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
+        </div>
         </div>
       </div>
     </header>
