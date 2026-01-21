@@ -1,5 +1,8 @@
 import { m, AnimatePresence } from 'framer-motion'
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 interface OrderModalProps {
   isOpen: boolean
@@ -10,17 +13,37 @@ const serviceOptions = [
   { value: '3d-print', label: '3D-печать' },
   { value: 'modeling', label: '3D-моделирование' },
   { value: 'consultation', label: 'Консультация' },
-]
+] as const
+
+// Схема валидации
+const schema = z.object({
+  name: z.string().min(2, 'Минимум 2 символа').max(50, 'Максимум 50 символов'),
+  contact: z.string().refine(
+    (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^@[a-zA-Z0-9_]{2,}$/.test(val),
+    'Укажите email или Telegram (@username)'
+  ),
+  type: z.enum(['3d-print', 'modeling', 'consultation']),
+  comment: z.string().max(500, 'Максимум 500 символов').optional()
+})
+
+type FormData = z.infer<typeof schema>
 
 export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    contact: '',
-    type: '3d-print',
-    comment: ''
-  })
   const [isSelectOpen, setIsSelectOpen] = useState(false)
   const selectRef = useRef<HTMLDivElement>(null)
+
+  const { register, handleSubmit, formState: { errors }, watch, setValue, reset } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: '',
+      contact: '',
+      type: '3d-print',
+      comment: ''
+    }
+  })
+
+  const selectedType = watch('type')
+  const selectedOption = serviceOptions.find(opt => opt.value === selectedType)
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -33,14 +56,14 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   }, [])
 
   useEffect(() => {
-    if (!isOpen) setIsSelectOpen(false)
-  }, [isOpen])
+    if (!isOpen) {
+      setIsSelectOpen(false)
+      reset() // Сбрасываем форму при закрытии
+    }
+  }, [isOpen, reset])
 
-  const selectedOption = serviceOptions.find(opt => opt.value === formData.type)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
+  const onSubmit = (data: FormData) => {
+    console.log('Form submitted:', data)
     alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
     onClose()
   }
@@ -74,29 +97,37 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
 
               <h3 className="text-2xl font-bold mb-6 text-center">Оставить заявку</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                {/* Имя */}
                 <div>
                   <label className="block text-sm text-slate-400 mb-1">Ваше имя</label>
                   <input
+                    {...register('name')}
                     type="text"
-                    required
-                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                    className={`w-full bg-slate-800/50 border rounded-xl px-4 py-3 text-white focus:outline-none transition-all ${
+                      errors.name 
+                        ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
+                        : 'border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                    }`}
                     placeholder="Иван"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
+                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>}
                 </div>
 
+                {/* Контакт */}
                 <div>
                   <label className="block text-sm text-slate-400 mb-1">Telegram или Email</label>
                   <input
+                    {...register('contact')}
                     type="text"
-                    required
-                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                    className={`w-full bg-slate-800/50 border rounded-xl px-4 py-3 text-white focus:outline-none transition-all ${
+                      errors.contact 
+                        ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
+                        : 'border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                    }`}
                     placeholder="@username или email@example.com"
-                    value={formData.contact}
-                    onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                   />
+                  {errors.contact && <p className="text-red-400 text-sm mt-1">{errors.contact.message}</p>}
                 </div>
 
                 {/* Кастомный Select */}
@@ -139,11 +170,11 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                               key={option.value}
                               type="button"
                               onClick={() => {
-                                setFormData({ ...formData, type: option.value })
+                                setValue('type', option.value)
                                 setIsSelectOpen(false)
                               }}
                               className={`w-full px-4 py-3 text-left transition-all cursor-pointer ${
-                                formData.type === option.value
+                                selectedType === option.value
                                   ? 'bg-blue-600/20 text-blue-400'
                                   : 'text-white hover:bg-slate-700/50'
                               }`}
@@ -157,14 +188,19 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                   </div>
                 </div>
 
+                {/* Комментарий */}
                 <div>
                   <label className="block text-sm text-slate-400 mb-1">Комментарий (необязательно)</label>
                   <textarea
-                    className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all h-24 resize-none"
+                    {...register('comment')}
+                    className={`w-full bg-slate-800/50 border rounded-xl px-4 py-3 text-white focus:outline-none transition-all h-24 resize-none ${
+                      errors.comment 
+                        ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
+                        : 'border-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                    }`}
                     placeholder="Опишите задачу..."
-                    value={formData.comment}
-                    onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                   />
+                  {errors.comment && <p className="text-red-400 text-sm mt-1">{errors.comment.message}</p>}
                 </div>
 
                 <button
