@@ -14,15 +14,25 @@ export default function HowToOrder() {
   return (
     <section id="how-to-order" className="min-h-screen px-4 sm:px-8 py-16 sm:py-32 bg-slate-900/50">
       <div className="max-w-6xl mx-auto">
-        <m.h2 
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-20 text-center tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          Как заказать
-        </m.h2>
+        <div className="relative mb-20 text-center">
+          <m.h2 
+            className="relative text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Как <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">заказать</span>
+          </m.h2>
+          
+          {/* Декоративная черта под текстом */}
+          <m.div 
+            className="h-1 w-20 bg-blue-500 mx-auto mt-6 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            viewport={{ once: true }}
+          />
+        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {ORDER_STEPS.map((step, i) => (

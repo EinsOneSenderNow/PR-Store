@@ -1,69 +1,102 @@
 import { m } from 'framer-motion'
-import { ADVANTAGES, WORK_EXAMPLES } from '../data/content'
+import { WORK_EXAMPLES } from '../data/content'
 
-export default function Advantages() {
-  const getHoverColor = (index: number) => {
-    const colors = [
-      'hover:bg-blue-900/30 hover:border-blue-700/50',
-      'hover:bg-red-900/30 hover:border-red-700/50',
-      'hover:bg-green-900/30 hover:border-green-700/50'
-    ]
-    return colors[index % colors.length]
-  }
-
+export default function AboutAndWorks() {
   return (
-    <section className="min-h-screen px-4 sm:px-8 py-16 sm:py-32">
+    <section className="px-4 sm:px-8 py-20 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <m.h2 
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-20 text-center tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          Преимущества
-        </m.h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-32">
-          {ADVANTAGES.map((item, i) => (
-            <m.div 
-              key={i}
-              className={`bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 transition-colors duration-300 ${getHoverColor(i)}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">{item.title}</h3>
-              <p className="text-slate-400 leading-relaxed text-sm sm:text-base">{item.desc}</p>
-            </m.div>
-          ))}
+        {/* Переработанный блок "О нас" */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-32 sm:mb-48">
+          <m.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 tracking-tight">
+              Ваши идеи в объеме: <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                профессиональная 3D-печать на заказ
+              </span>
+            </h2>
+            <p className="text-slate-400 text-lg sm:text-xl leading-relaxed mb-6">
+              Мы превращаем сложные 3D-модели в реальные физические объекты с безупречной точностью. Используя современные технологии FDM-печати и качественные материалы (PLA), мы создаем как уникальные детали для дома, так и функциональные прототипы для бизнеса. Каждый проект для нас — это сочетание инженерного расчета и внимания к вашим задачам.
+            </p>
+            <div className="flex gap-4 items-center text-blue-400 font-medium italic">
+              <span className="w-12 h-[1px] bg-blue-400/50"></span>
+              С заботой о каждой детали
+            </div>
+          </m.div>
+
+          <m.div 
+            className="grid grid-cols-2 gap-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {/* Карточки с "фактами" вместо сухих преимуществ */}
+            <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl">
+              <div className="text-3xl font-bold text-white mb-2">0.1 мм</div>
+              <div className="text-slate-500 text-sm">Высокая точность печати слоев</div>
+            </div>
+            <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl mt-8">
+              <div className="text-3xl font-bold text-white mb-2">24/7</div>
+              <div className="text-slate-500 text-sm">Ваш проект в печати без остановок</div>
+            </div>
+          </m.div>
         </div>
 
-        <m.h2 
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-20 text-center tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          Примеры работ
-        </m.h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {WORK_EXAMPLES.map((item, i) => (
-            <m.div 
-              key={item.id}
-              className={`card-hover aspect-square bg-slate-900/50 border border-slate-800/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-600 cursor-pointer ${getHoverColor(i)}`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              viewport={{ once: true, margin: "-100px" }}
+        {/* Секция Примеры работ (Портфолио) */}
+        <div className="space-y-12">
+          <div className="relative mb-20 text-center">
+            
+            <m.h2 
+              className="relative text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
             >
-              {item.label}
-            </m.div>
-          ))}
+              Примеры <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">работ</span>
+            </m.h2>
+            
+            {/* Декоративная черта под текстом */}
+            <m.div 
+              className="h-1 w-20 bg-blue-500 mx-auto mt-6 rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: 80 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              viewport={{ once: true }}
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WORK_EXAMPLES.map((item, i) => (
+              <m.div 
+                key={item.id}
+                className="group relative aspect-[4/5] bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {/* Заглушка под будущие изображения */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60 z-10" />
+                <div className="absolute inset-0 flex items-center justify-center text-slate-700 font-medium group-hover:scale-110 transition-transform duration-500">
+                  {item.label}
+                </div>
+                
+                {/* Подпись при наведении */}
+                <div className="absolute bottom-6 left-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white font-semibold">{item.label}</p>
+                  <p className="text-blue-400 text-sm">Посмотреть проект</p>
+                </div>
+              </m.div>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   )

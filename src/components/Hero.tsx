@@ -44,12 +44,6 @@ export default function Hero() {
             >
               Заказать
             </button>
-            <button 
-              disabled 
-              className="px-8 sm:px-10 py-3 sm:py-4 border border-neutral-700 text-neutral-500 rounded-full font-medium cursor-not-allowed opacity-50"
-            >
-              Скоро
-            </button>
           </div>
         </div>
       </m.div>

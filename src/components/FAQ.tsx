@@ -43,14 +43,51 @@ export default function FAQ() {
   return (
     <section className="py-20 sm:py-32 px-4 sm:px-8">
       <div className="max-w-3xl mx-auto">
-        <m.h2 
-          className="text-3xl sm:text-4xl font-bold mb-12 text-center tracking-tight"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Частые вопросы
-        </m.h2>
+        <div className="flex flex-row items-center justify-center gap-4 mb-12">
+          {/* Иконка (размер адаптирован под высоту текста) */}
+          <m.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-blue-400 shrink-0"
+          >
+            <svg 
+              viewBox="0 0 100 100" 
+              className="w-10 h-10 sm:w-12 sm:h-12" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="4" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="5" y="5" width="90" height="90" rx="24" strokeWidth="6" className="opacity-20" />
+              <rect x="5" y="5" width="90" height="90" rx="24" strokeWidth="6" />
+              <text 
+                x="50%" y="50%" dominantBaseline="central" textAnchor="middle" 
+                fontSize="36" fontWeight="900" fill="currentColor" stroke="none"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                FAQ
+              </text>
+            </svg>
+          </m.div>
+
+          {/* Текст заголовка */}
+          <m.h2 
+            className="text-3xl sm:text-4xl font-black tracking-tighter uppercase"
+            style={{ fontFamily: 'Inter, sans-serif' }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            Частые 
+            <span className="ml-2 text-blue-400">
+              вопросы
+            </span>
+          </m.h2>
+        </div>
         
         <div className="bg-slate-900/30 rounded-3xl p-6 sm:p-10 border border-slate-800/50">
           {FAQ_ITEMS.map((item, index) => (

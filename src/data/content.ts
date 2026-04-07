@@ -7,13 +7,17 @@ export const COMPANY_INFO = {
   contact: {
     phone: '+7 (999) 123-45-67',
     email: 'email@example.com',
+    telegram: 'your_username', // без @
   },
   socials: [
-    { name: 'Ozon', url: 'https://ozon.ru' },
-    { name: 'Авито', url: 'https://avito.ru' },
-    { name: 'Юла', url: 'https://youla.ru' },
-  ]
-}
+    { name: 'Ozon',        url: 'https://ozon.ru',   type: 'ozon'      },
+    { name: 'Авито',       url: 'https://avito.ru',  type: 'avito'     },
+    { name: 'Юла',         url: 'https://youla.ru',  type: 'youla'     },
+    { name: 'Wildberries', url: 'https://wb.ru',     type: 'wildberries' },
+    { name: 'ВКонтакте',   url: 'https://vk.com',   type: 'vk'        },
+    { name: 'Telegram',    url: 'https://t.me/your_username', type: 'telegram' },
+  ],
+} as const
 
 export const ADVANTAGES = [
   { title: 'Преимущество 1', desc: 'Описание первого преимущества вашей компании' },
@@ -56,3 +60,15 @@ export const FAQ_ITEMS = [
     answer: 'Да, мы отправляем заказы через СДЭК, Почту России или курьерскими службами по городу.'
   }
 ]
+
+// Тип для площадки
+type SocialType = 'wildberries' | 'vk' | 'telegram'
+
+interface Social {
+  name: string
+  url: string
+  type: SocialType
+}
+
+// В COMPANY_INFO добавить:
+
