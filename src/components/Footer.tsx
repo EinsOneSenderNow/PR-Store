@@ -67,7 +67,7 @@ export default function Footer() {
             {COMPANY_INFO.name}
           </h3>
           <p className="text-blue-400/80 text-xs sm:text-sm font-medium mb-4 italic">
-            С заботой о вас!
+            С заботой о каждой детали
           </p>
           <p className="text-slate-500 text-sm">{COMPANY_INFO.copyright}</p>
         </div>
