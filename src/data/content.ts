@@ -61,14 +61,3 @@ export const FAQ_ITEMS = [
   }
 ]
 
-// Тип для площадки
-type SocialType = 'wildberries' | 'vk' | 'telegram'
-
-interface Social {
-  name: string
-  url: string
-  type: SocialType
-}
-
-// В COMPANY_INFO добавить:
-
