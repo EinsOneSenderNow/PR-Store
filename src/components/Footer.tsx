@@ -6,8 +6,12 @@ const ICONS: Record<string, React.ReactNode> = {
      <img src="/telegram.svg" alt="Telegram" className="w-5 h-5 shrink-0" />
   ),
   email: (
-    <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14">
+      <g fill="none">
+        <path fill="#d7e0ff" d="M12.5 1.75h-11a1 1 0 0 0-1 1v8.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-8.5a1 1 0 0 0-1-1"/>
+        <path stroke="#4147d5" stroke-linecap="round" stroke-linejoin="round" d="M12.5 1.75h-11a1 1 0 0 0-1 1v8.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-8.5a1 1 0 0 0-1-1" stroke-width="1"/>
+        <path stroke="#4147d5" stroke-linecap="round" stroke-linejoin="round" d="m.5 3l5.86 5a1 1 0 0 0 1.28 0l5.86-5" stroke-width="1"/>
+      </g>
     </svg>
   ),
   wildberries: (
