@@ -11,27 +11,19 @@ const ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
   wildberries: (
-    <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-.5 4.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm3.5 9.5H9v-1.5l1.5-.75v-3L9 9.5V8h5v1.5l-1.5.75v3l1.5.75V16z" />
-    </svg>
+    <img src="/wb.ico" alt="Ozon" className="w-5 h-5 shrink-0" />
   ),
   vk: (
     <img src="/vk.svg" alt="VK" className="w-5 h-5 shrink-0" />
   ),
   ozon: (
-    <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-    </svg>
+    <img src="/ozon.ico" alt="Ozon" className="w-5 h-5 shrink-0" />
   ),
   avito: (
-    <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 4a2 2 0 110 4 2 2 0 010-4zm0 10c-2.67 0-5.07-1.33-6.5-3.36.03-2.16 4.33-3.34 6.5-3.34 2.16 0 6.47 1.18 6.5 3.34C17.07 15.67 14.67 17 12 17z" />
-    </svg>
+    <img src="/avito.ico" alt="Ozon" className="w-5 h-5 shrink-0" />
   ),
   youla: (
-    <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-    </svg>
+    <img src="/youla.png" alt="Ozon" className="w-5 h-5 shrink-0" />
   ),
 }
 

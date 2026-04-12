@@ -30,36 +30,36 @@ export default function AboutAndWorks() {
           </m.div>
 
           <m.div 
-            className="grid grid-cols-2 gap-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {/* Левая колонка — без смещения */}
-            <div className="flex flex-col gap-4">
-              <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
-                <div className="text-3xl font-bold text-white mb-2">0.1 мм</div>
-                <div className="text-slate-500 text-sm">Высокая точность печати слоев</div>
-              </div>
-              <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
-                <div className="text-3xl font-bold text-white mb-2">100+</div>
-                <div className="text-slate-500 text-sm">Выполненных проектов</div>
-              </div>
-            </div>
+  className="grid grid-cols-2 gap-6"
+  initial={{ opacity: 0, scale: 0.9 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  viewport={{ once: true }}
+>
+  {/* Левая колонка */}
+  <div className="flex flex-col gap-6">
+    <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
+      <div className="text-3xl font-bold text-white mb-2">0.1 мм</div>
+      <div className="text-slate-500 text-sm">Высокая точность печати слоев</div>
+    </div>
+    <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36 translate-x-3">
+      <div className="text-3xl font-bold text-white mb-2">100+</div>
+      <div className="text-slate-500 text-sm">Выполненных проектов</div>
+    </div>
+  </div>
 
-            {/* Правая колонка — смещена вниз */}
-            <div className="flex flex-col gap-4 mt-8">
-              <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
-                <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                <div className="text-slate-500 text-sm">Ваш проект в печати без остановок</div>
-              </div>
-              <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
-                <div className="text-3xl font-bold text-white mb-2">PLA</div>
-                <div className="text-slate-500 text-sm">Качественные материалы для печати</div>
-              </div>
-            </div>
-          </m.div>
+  {/* Правая колонка — смещена вниз */}
+  <div className="flex flex-col gap-6 mt-10">
+    <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36">
+      <div className="text-3xl font-bold text-white mb-2">24/7</div>
+      <div className="text-slate-500 text-sm">Ваш проект в печати без остановок</div>
+    </div>
+    <div className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-3xl h-36 translate-x-3">
+      <div className="text-3xl font-bold text-white mb-2">PLA</div>
+      <div className="text-slate-500 text-sm">Качественные материалы для печати</div>
+    </div>
+  </div>
+</m.div>
         </div>
 
         {/* Секция Примеры работ (Портфолио) */}
