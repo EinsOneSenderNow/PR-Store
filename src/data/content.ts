@@ -26,9 +26,9 @@ export const ADVANTAGES = [
 ]
 
 export const WORK_EXAMPLES = [
-  { id: 1, label: 'Фото 1' },
-  { id: 2, label: 'Фото 2' },
-  { id: 3, label: 'Фото 3' },
+  { id: 1, label: 'Фото 1', description: 'Описание работы 1' },
+  { id: 2, label: 'Фото 2', description: 'Описание работы 2' },
+  { id: 3, label: 'Фото 3', description: 'Описание работы 3' },
 ]
 
 export const ORDER_STEPS = [
